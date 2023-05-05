@@ -64,6 +64,7 @@ pipeline {
                 subject: 'Security Scan Failed',
                 body: 'Security Scan Failed'
               }
+            }
         }
         stage('Deploy To Staging') {
             steps {
