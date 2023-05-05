@@ -27,7 +27,7 @@ pipeline {
                 emailext to: 'andrew.cho1992@gmail.com',
                 attachLog: true,
                 subject: 'Build Successful',
-                body: 'Build Successful')
+                body: 'Build Successful'
               }
               failure {
                 emailext attachLog: true,
@@ -56,13 +56,13 @@ pipeline {
                 emailext attachLog: true,
                 to: 'andrew.cho1992@gmail.com',
                 subject: 'Security Scan Successful',
-                body: 'Security Scan Successful')
+                body: 'Security Scan Successful'
               }
               failure {
                 emailext attachLog: true,
                 to: 'andrew.cho1992@gmail.com',
                 subject: 'Security Scan Failed',
-                body: 'Security Scan Failed')
+                body: 'Security Scan Failed'
               }
         }
         stage('Deploy To Staging') {
