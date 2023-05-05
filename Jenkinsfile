@@ -24,14 +24,14 @@ pipeline {
             }
             post {
               success {
-                emailext attachLog: true,
                 mail to: 'andrew.cho1992@gmail.com',
+                emailext attachLog: true,
                 subject: 'Build Successful',
                 body: 'Build Successful'
               }
               failure {
-                emailext attachLog: true,
                 mail to: 'andrew.cho1992@gmail.com',
+                emailext attachLog: true,
                 subject: 'Build Failed',
                 body: 'Build Failed'
               }
@@ -53,14 +53,14 @@ pipeline {
             }
             post {
               success {
-                emailext attachLog: true,
                 mail to: 'andrew.cho1992@gmail.com',
+                emailext attachLog: true,
                 subject: 'Security Scan Successful',
                 body: 'Security Scan Successful'
               }
               failure {
-                emailext attachLog: true,
                 mail to: 'andrew.cho1992@gmail.com',
+                emailext attachLog: true,
                 subject: 'Security Scan Failed',
                 body: 'Security Scan Failed'
               }
