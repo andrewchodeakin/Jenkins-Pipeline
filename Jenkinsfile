@@ -8,43 +8,94 @@ pipeline {
     stages {
         stage('Build') {
             steps {
-                echo 'fetch the source code from the directory path specified by the environment variable'
-                echo 'compile the code and generate any necessary artifacts'
+                echo 'Building...'
+                echo 'Using Maven...'
+            }
+            post {
+                success {
+                    echo 'Build successful!'
+                }
+            }
+        }
+        stage('Unit and Integration Tests') {
+            steps {
+                echo 'Running unit tests with JUnit...'
+                echo 'Running integration tests with Cucumber...'
             }
             post {
               success {
+                emailext attachLog: true,
                 mail to: 'andrew.cho1992@gmail.com',
-                subject: 'email sent',
-                body: 'email body'
+                subject: 'Build Successful',
+                body: 'Build Successful'
+              }
+              failure {
+                emailext attachLog: true,
+                mail to: 'andrew.cho1992@gmail.com',
+                subject: 'Build Failed',
+                body: 'Build Failed'
               }
             }
         }
-        stage('Test') {
+        stage('Code Analysis') {
             steps {
-                echo 'unit tests'
-                echo 'integration tests'
+                echo 'Running code analysis with Checkov...'
+            }
+            post {
+                success {
+                    echo 'Code Analysis successful!'
+                }
             }
         }
-        stage('Code Quality Check') {
+        stage('Security Scan') {
             steps {
-                echo 'check the quality of the code'
+                echo 'Scanning for security issues with Spotbugs...'
             }
+            post {
+              success {
+                emailext attachLog: true,
+                mail to: 'andrew.cho1992@gmail.com',
+                subject: 'Security Scan Successful',
+                body: 'Security Scan Successful'
+              }
+              failure {
+                emailext attachLog: true,
+                mail to: 'andrew.cho1992@gmail.com',
+                subject: 'Security Scan Failed',
+                body: 'Security Scan Failed'
+              }
         }
-        stage('Deploy') {
+        stage('Deploy To Staging') {
             steps {
-                echo 'deploy the application to a testing environment specified by the environment variable'
-            }
-        }
-        stage('Approval') {
-            steps {
+                echo 'Deploying to ECS instance on staging environment...'
                 timeout(time: 15, unit: 'SECONDS') {
                     sleep 10
+                }
+            }
+            post {
+                success {
+                    echo 'Deployment to staging server successful!'
+                }
+            }
+        }
+        stage('Integration Tests on Staging') {
+            steps {
+                echo 'Running integration tests on AWS ECS Staging environment with LocalStack...'
+            }
+            post {
+                success {
+                    echo 'Integration tests on AWS ECS Staging environment successful!'
                 }
             }
         }
         stage('Deploy to Production') {
             steps {
-                echo "deploy code to $PRODUCTION_ENVIRONMENT"
+                echo 'Deploying to AWS ECS Production environment...'
+            }
+            post {
+                success {
+                    echo 'Deploy to production successful!'
+                }
             }
         }
     }
