@@ -29,12 +29,12 @@ pipeline {
                 to: 'andrew.cho1992@gmail.com',
                 attachLog: true
               }
-//               failure {
-//                 emailext body: 'Build Failure',
-//                 subject: 'Build Failure',
-//                 to: 'andrew.cho1992@gmail.com',
-//                 attachLog: true
-//               }
+              failure {
+                emailext body: 'Build Failure',
+                subject: 'Build Failure',
+                to: 'andrew.cho1992@gmail.com',
+                attachLog: true
+              }
             }
         }
         stage('Code Analysis') {
@@ -51,20 +51,20 @@ pipeline {
             steps {
                 echo 'Scanning for security issues with Spotbugs...'
             }
-//             post {
-//               success {
-//                 emailext body: 'Security Scan Successful',
-//                 subject: 'Security Scan Successful',
-//                 to: 'andrew.cho1992@gmail.com',
-//                 attachLog: true
-//               }
-//               failure {
-//                 emailext body: 'Security Scan Failure',
-//                 subject: 'Security Scan Failure',
-//                 to: 'andrew.cho1992@gmail.com',
-//                 attachLog: true
-//               }
-//             }
+            post {
+              success {
+                emailext body: 'Security Scan Successful',
+                subject: 'Security Scan Successful',
+                to: 'andrew.cho1992@gmail.com',
+                attachLog: true
+              }
+              failure {
+                emailext body: 'Security Scan Failure',
+                subject: 'Security Scan Failure',
+                to: 'andrew.cho1992@gmail.com',
+                attachLog: true
+              }
+            }
         }
         stage('Deploy To Staging') {
             steps {
