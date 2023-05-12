@@ -29,6 +29,7 @@ pipeline {
                     subject: 'Build Successful',
                     to: 'andrew.cho1992@gmail.com',
                     attachLog: true
+                }
               }
 //               failure {
 //                 emailext body: 'Build Failure',
