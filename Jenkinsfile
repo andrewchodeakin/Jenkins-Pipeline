@@ -3,7 +3,7 @@ pipeline {
     environment {
         DIRECTORY_PATH = "/dummy/path"
         TESTING_ENVIRONMENT = "MyFirstTestingEnvironment"
-        PRODUCTION_ENVIRONMENT = "MyFirstProductionEnvironment"
+        PRODUCTION_ENVIRONMENT = "MyFirstProductionEnvironment "
     }
     stages {
         stage('Build') {
@@ -21,10 +21,20 @@ pipeline {
             steps {
                 echo 'Running unit tests with JUnit...'
                 echo 'Running integration tests with Cucumber...'
+            }
+            post {
+              success {
                 emailext body: 'Build Successful',
                 subject: 'Build Successful',
                 to: 'andrew.cho1992@gmail.com',
                 attachLog: true
+              }
+              failure {
+                emailext body: 'Build Failure',
+                subject: 'Build Failure',
+                to: 'andrew.cho1992@gmail.com',
+                attachLog: true
+              }
             }
         }
         stage('Code Analysis') {
@@ -40,10 +50,20 @@ pipeline {
         stage('Security Scan') {
             steps {
                 echo 'Scanning for security issues with Spotbugs...'
+            }
+            post {
+              success {
                 emailext body: 'Security Scan Successful',
                 subject: 'Security Scan Successful',
                 to: 'andrew.cho1992@gmail.com',
                 attachLog: true
+              }
+              failure {
+                emailext body: 'Security Scan Failure',
+                subject: 'Security Scan Failure',
+                to: 'andrew.cho1992@gmail.com',
+                attachLog: true
+              }
             }
         }
         stage('Deploy To Staging') {
