@@ -24,12 +24,10 @@ pipeline {
             }
             post {
               success {
-                node ('master') { 
-                    emailext body: 'Build Successful',
-                    subject: 'Build Successful',
-                    to: 'andrew.cho1992@gmail.com',
-                    attachLog: true
-                }
+                emailext body: 'Build Successful',
+                subject: 'Build Successful',
+                to: 'andrew.cho1992@gmail.com',
+                attachLog: true
               }
 //               failure {
 //                 emailext body: 'Build Failure',
