@@ -25,11 +25,13 @@ pipeline {
             post {
               success {
                 mail to: 'andrew.cho1992@gmail.com',
+                attachlog: true,
                 subject: 'Build Successful',
                 body: 'Build Successful'
               }
               failure {
                 mail to: 'andrew.cho1992@gmail.com',
+                attachlog: true,
                 subject: 'Build Failed',
                 body: 'Build Failed'
               }
@@ -52,11 +54,13 @@ pipeline {
             post {
               success {
                 mail to: 'andrew.cho1992@gmail.com',
+                attachlog: true,
                 subject: 'Security Scan Successful',
                 body: 'Security Scan Successful'
               }
               failure {
                 mail to: 'andrew.cho1992@gmail.com',
+                attachlog: true,
                 subject: 'Security Scan Failed',
                 body: 'Security Scan Failed'
               }
