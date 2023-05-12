@@ -21,8 +21,6 @@ pipeline {
             steps {
                 echo 'Running unit tests with JUnit...'
                 echo 'Running integration tests with Cucumber...'
-            }
-            post {
                 emailext body: 'Build Successful',
                 subject: 'Build Successful',
                 to: 'andrew.cho1992@gmail.com',
@@ -42,8 +40,6 @@ pipeline {
         stage('Security Scan') {
             steps {
                 echo 'Scanning for security issues with Spotbugs...'
-            }
-            post {
                 emailext body: 'Security Scan Successful',
                 subject: 'Security Scan Successful',
                 to: 'andrew.cho1992@gmail.com',
