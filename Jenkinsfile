@@ -24,16 +24,16 @@ pipeline {
             }
             post {
               success {
-                mail to: 'andrew.cho1992@gmail.com',
-                attachlog: true,
+                emailext body: 'Build Successful'
                 subject: 'Build Successful',
-                body: 'Build Successful'
+                to: 'andrew.cho1992@gmail.com'
+                attachlog: true,
               }
               failure {
-                mail to: 'andrew.cho1992@gmail.com',
+                emailext body: 'Build Failure'
+                subject: 'Build Failure',
+                to: 'andrew.cho1992@gmail.com'
                 attachlog: true,
-                subject: 'Build Failed',
-                body: 'Build Failed'
               }
             }
         }
@@ -53,16 +53,16 @@ pipeline {
             }
             post {
               success {
-                mail to: 'andrew.cho1992@gmail.com',
-                attachlog: true,
+                emailext body: 'Security Scan Successful'
                 subject: 'Security Scan Successful',
-                body: 'Security Scan Successful'
+                to: 'andrew.cho1992@gmail.com'
+                attachlog: true,
               }
               failure {
-                mail to: 'andrew.cho1992@gmail.com',
+                emailext body: 'Security Scan Failure'
+                subject: 'Security Scan Failure',
+                to: 'andrew.cho1992@gmail.com'
                 attachlog: true,
-                subject: 'Security Scan Failed',
-                body: 'Security Scan Failed'
               }
             }
         }
