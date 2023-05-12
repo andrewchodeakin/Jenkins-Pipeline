@@ -24,7 +24,7 @@ pipeline {
             }
             post {
               success {
-                node ('email') { 
+                node ('master') { 
                     emailext body: 'Build Successful',
                     subject: 'Build Successful',
                     to: 'andrew.cho1992@gmail.com',
